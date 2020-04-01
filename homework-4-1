@@ -1,0 +1,68 @@
+# 作业一
+
+#include <stdio.h>
+int* smallerNumbersThanCurrent(int* nums, int numsSize, int* returnSize){
+
+    int* result = malloc(numsSize * sizeof(int));
+
+    for (int i = 0; i < numsSize; i++){
+    
+        int count = 0;
+    
+        for (int j = 0; j < numsSize; j++){
+        
+            if (nums[j] < nums[i])
+            
+                count++;
+        }
+        
+        result[i] = count;
+        
+    }
+    *returnSize = numsSize;
+    
+    return result;
+}
+
+# 作业二
+
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+int* twoSum(int* nums, int numsSize, int target, int* returnSize){
+    
+    int* result = malloc(2 * sizeof(int));
+    
+    for(int i = 0; i < numsSize - 1; i++){
+        
+        for(int j = i + 1; j < numsSize; j++){
+            
+            if (nums[i] + nums[j] == target){
+                
+                result[0] = i;
+                result[1] = j;
+                *returnSize = 2;
+                return result;
+            }
+        }
+    }
+    return NULL;
+}
+
+# 作业三
+
+问：给定字符串，找出找出不含重复字符的最长子字符。
+
+## 1.如果字符串只有0个元素，则返回0.
+
+## 2.如果字符串只有一个元素，则返回1.
+
+## 3.创建一个数组num[],用于储存字符串中每个不含重复字符的子字符串，int num[];
+
+## 4.定义一个整型变量lg用来表示数组num[]的长度，定义一个中间变量vi来记录lg的值。
+
+## 5.开始第一次遍历字符串，初始化sum[],int sum[] == 0;当字符串中的数字不在num[]中，则lg+1。
+     如果字符串中的元素第一次存在于num[]中，则停止遍历，lg赋值给vi，初始化lg的值，并从这个重复的元素开始继续遍历。
+
+## 6.当再次出现重复的元素时，比较vi与lg的大小，如果lg > vi,则vi = lg，重复这个循环直至遍历完整个字符串，vi的值就是最长不重复子字符的值。
